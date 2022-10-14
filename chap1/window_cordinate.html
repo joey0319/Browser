@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clickCordinates</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        div {
+            background-color: blanchedalmond;
+            height: 250px;
+            width: 250px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+
+        .special {
+            background-color: lightsalmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="special"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        const special = document.querySelector('.special')
+        special.addEventListener('click', (event) => {
+            const rect = special.getBoundingClientRect();
+            console.log(rect)
+            // client X, Y 좌표는 현재 페이지에서의 좌표
+            console.log(`client: ${event.clientX}, ${event.clientY}`);
+            // 그냥 pageX, Y는 전체 페이지 (스크롤 올려서 처음) 부터의 좌표
+            console.log(`page: ${event.pageX}, ${event.pageY}`)
+        })
+    </script>
+</body>
+
+</html>

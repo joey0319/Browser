@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        div {
+            background-color: blanchedalmond;
+            height: 250px;
+            width: 250px;
+            margin-bottom: 4px;
+            border-radius: 4px;
+        }
+
+        .special {
+            background-color: lightsalmon;
+        }
+
+        aside {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="special"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <aside>
+        <button class="scroll-by">Scroll by 100px</button>
+        <button class="scroll-to">Scroll to 100px</button>
+        <button class="scroll-into">Scroll to special</button>
+    </aside>
+    <script>
+        const scrollBy = document.querySelector('.scroll-by')
+        const scrollTo = document.querySelector('.scroll-to')
+        const scrollInto = document.querySelector('.scroll-into')
+        const special = document.querySelector('.special')
+        scrollBy.addEventListener('click', () => {
+            window.scrollBy({
+                top: 100,
+                behavior: 'smooth'
+            })
+        })
+        scrollTo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 100,
+                behavior: 'smooth'
+            })
+        })
+        scrollInto.addEventListener('click', () => {
+            special.scrollIntoView({
+                behavior: 'smooth'
+            });
+        })
+
+    </script>
+</body>
+
+</html>
