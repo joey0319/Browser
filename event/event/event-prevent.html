@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    div {
+      width: 250px;
+      height: 250px;
+      background-color: yellow;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <input type="checkbox" />
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <script>
+    document.addEventListener('wheel', event => {
+      console.log('scrolling');
+      // 스크롤링은 브라우저를 취소할 수 없다.
+      // wheel은 pasive 속성이 true로 되어 있기 때문
+      // passive를 false로 바꿔줄 수 있다.
+      // passive를 false로 바꾸면 화면이 안내려간다(스크롤링이 안된다.)
+      // 하지만 passive 속성은 최대한 안바꾸는게 좋다.
+      event.preventDefault();
+    }, { passive: false }); // 이렇게 passive를 false로 옵션을 줘서 바꿀 수 있다.
+    const checkbox = document.querySelector('input');
+    checkbox.addEventListener('click', event => {
+      console.log('checked');
+      // 브라우저에서 하는 기본적인 행동(체크박스가 체크되는것)을
+      // 취소한다. (콘솔은 출력된다.)
+      event.preventDefault();
+    });
+  </script>
+</body>
+
+</html>
