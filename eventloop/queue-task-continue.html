@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            font-size: 40px;
+        }
+
+        button:hover {
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Continue with setTimeout</button>
+    <script>
+        // 테스크 큐와 마이크로테스크 큐의 차이
+        // 테스크 큐는 이벤트루프가 콜백함수 하나씩만 콜스택으로 가져온다.
+        // 마이크로테스크 큐는 이벤트 루프가 거기 있는 모든 콜백이 빌 때까지 콜백으로 가져와 실행을 다 한다.
+        // 또한 이를 처리하는 중에 버튼에 마우스를 올리면 색깔이 바뀌는것도 처리되는데
+        // 그 이유는 이벤트 루프가 돌면서 렌더링 쪽에도 방문해서 처리하기 때문
+        function handleClick() {
+            console.log('handleClick')
+            setTimeout(() => {
+                console.log('setTimeout')
+                handleClick();
+            }, 0);
+        }
+        const button = document.querySelector('button')
+        button.addEventListener('click', () => {
+            handleClick();
+        })
+    </script>
+</body>
+
+</html>

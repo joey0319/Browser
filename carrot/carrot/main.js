@@ -1,4 +1,5 @@
 'use strict';
+
 const CARROT_SIZE = 80
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
@@ -6,8 +7,6 @@ const GAME_DURATION_SEC = 120;
 
 const field = document.querySelector('.game__field');
 const fieldRect = field.getBoundingClientRect();
-
-
 const gameBtn = document.querySelector('.game__button')
 const gameTimer = document.querySelector('.game__timer')
 const gameScore = document.querySelector('.game__score')
@@ -15,7 +14,6 @@ const gameScore = document.querySelector('.game__score')
 const popUp = document.querySelector('.pop-up')
 const popUpText = document.querySelector('.pop-up__message')
 const popUpRefresh = document.querySelector('.pop-up__refresh')
-
 const carrotSound = new Audio('./sound/carrot_pull.mp3')
 const bugSound = new Audio('./sound/bug_pull.mp3')
 const bgSound = new Audio('./sound/bg.mp3')

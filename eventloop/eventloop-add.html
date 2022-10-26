@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Click to add</button>
+    <script>
+        const button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            const element = document.createElement('h1');
+            document.body.appendChild(element)
+            // 스타일을 지정하기 전에 먼저 element를 추가해버렸는데도
+            // red와 hello가 잘 반영된 이유는
+            // 버튼에 클릭이 발생하면 등록한 콜백(element를 만들고 스타일 지정하는)을
+            // Web API가 테스크 큐에 넣어준다.
+            // 이벤트 루프는 테스크 큐의 콜백을 콜 스택으로 옮기고 콜백안의 모든것이 실행될 때까지
+            // 기다렸다가 다음으로 이동하므로 콜백안의 코드 순서는 상관이 없다. 어차피 다 끝날때까지 기다렸다가 나중에 렌더링이 되므로
+            element.style.color = 'red';
+            element.innerText = 'hello'
+        });
+    </script>
+</body>
+
+</html>

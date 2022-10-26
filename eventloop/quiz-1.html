@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Let's dance 🤹‍♂️</button>
+    <div class="box"></div>
+    <script>
+        // translate 최종 500px만 반영되어 나타난다.
+        // 콜백이 끝날때까지 기다렸다가 렌더링 되므로 최종적으로 지정된 500px만 적용된다.
+        const button = document.querySelector('button');
+        const box = document.querySelector('.box')
+        button.addEventListener('click', () => {
+            box.style.transition = 'transform 1s ease-in';
+            box.style.transform = 'translateX(800px)';
+            box.style.transform = 'translateX(500px)'
+        })
+    </script>
+</body>
+
+</html>

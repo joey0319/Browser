@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            font-size: 40px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <button>RequestAnimationFrame</button>
+    <script>
+        // requestanimationframe이라는 webapi는
+        // 브라우저에서 다음 렌더링이 발생하기 전!!에
+        // 이 콜백함수를 실행해준다.
+        // 버튼을 클릭하면 우리가 클릭뒤에 등록한 콜백함수를 테스크큐!!!에 등록한다.
+        // 그리고 이벤트 루프가 돌다가 테스크 큐에 있는 아이템을 콜스택으로 가져오고
+        // 콜스택에서 콜백함수가 실행이된다.
+        // 그러면 그 콜백함수가 requestanimationframe으로 또 다시 안에 등록된 콜백함수(빨강, 오렌지, 베이지)를 등록한다.
+        // requestanimationframe 큐에는 베이지, 오렌지, 레드 순으로 들어가 있다.
+        // 그래서 나올때도 베이지, 오렌지, 레드 순으로 나간다.
+        // 이렇게 등록만 되어 있는 상태에서 이벤트 루프가 돌다가
+        // 브라우저 업데이트 할 시간이 되면 Render로 들어가 RequestAnimationFrame큐에 아이템이 있다는것을 인지한다.
+        // 그래서 베이지, 오렌지, 레드를 업데이트하고 최종적으로 빨간색의 스타일이 적용된 상태에서 RenderTree로 들어간다.
+        // 거기서 Rendering이 되기 때문에 빨간색이 적용된다.
+        const button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            requestAnimationFrame(() => {
+                document.body.style.backgroundColor = 'biege'
+            });
+            requestAnimationFrame(() => {
+                document.body.style.backgroundColor = 'orange'
+            })
+            requestAnimationFrame(() => {
+                document.body.style.backgroundColor = 'red'
+            })
+            // setTimeout 0을 하면 순서를 보장할 수 있다.
+            // 지금 당장 테스크 큐에 넣어놓긴 하겠지만
+            // 실제 안에 들어있는 콜백함수는 콜 스택이 다 비고 즉, 이벤트루프가 한바퀴 돌고 나서야 실행이된다.
+            setTimeout(() => {
+                // do something
+            }, 0)
+        })
+    </script>
+</body>
+
+</html>

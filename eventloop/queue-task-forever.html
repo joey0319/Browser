@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            font-size: 60px;
+        }
+
+        button:hover {
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button>While(true)</button>
+    <script>
+        // 이렇게 하면 콜스택에 등록된 콜백함수가 끝나지를 않으므로
+        // 버튼을 한번 누르면 커서를 올렸을 때 반응이 없다.
+        const button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            while (true) {
+                // repeat
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button {
+            font-size: 40px;
+        }
+
+        button:hover {
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Continue with Promise</button>
+    <script>
+        // Promise의 then안에 등록된 콜백함수는 마이크로 테스크 큐에 저장된다.
+        // 마이크로 테스크 큐는 무한재귀로 이런식으로 작성하게 되면
+        // 마이크로 테스크 큐가 다 빌때까지 무한정 반복하므로
+        // 이벤트루프가 움직이질 못한다.
+        // 그래서 브라우저가 죽는다.
+        function handleClick() {
+            console.log('handleClick')
+            Promise.resolve(0)
+                .then(() => {
+                    console.log('then')
+                    handleClick();
+                })
+        }
+        const button = document.querySelector('button')
+        button.addEventListener('click', () => {
+            handleClick();
+        })
+    </script>
+</body>
+
+</html>
